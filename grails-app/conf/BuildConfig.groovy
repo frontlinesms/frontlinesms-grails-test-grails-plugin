@@ -3,6 +3,7 @@ grails.project.target.level = 1.6
 
 grails.project.dependency.resolution = {
 	def gebVersion = '0.7.2'
+	def seleniumVersion = '2.32.0'
 
 	inherits 'global'
 	log 'warn'
