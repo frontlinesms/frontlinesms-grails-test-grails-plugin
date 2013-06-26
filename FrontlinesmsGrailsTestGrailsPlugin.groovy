@@ -1,6 +1,6 @@
-class FrontlinesmsTestGrailsPlugin {
+class FrontlinesmsGrailsTestGrailsPlugin {
 	def version = '0.1-SNAPSHOT'
-	def grailsVersion = '2.2 > *'
+	def grailsVersion = '2.0 > *'
 	def title = 'Frontlinesms Test Plugin'
 	def author = 'Alex Anderson'
 	def authorEmail = 'alex@frontlinesms.com'
