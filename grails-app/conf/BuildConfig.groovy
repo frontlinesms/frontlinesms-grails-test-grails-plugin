@@ -35,6 +35,7 @@ grails.project.dependency.resolution = {
 		compile ":geb:$gebVersion"
 		compile ':remote-control:1.4'
 
+		compile ":code-coverage:1.2.6"
 		compile ':codenarc:0.18.1'
 	}
 }
