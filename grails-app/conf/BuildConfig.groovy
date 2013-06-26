@@ -17,10 +17,10 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
-		test "org.codehaus.geb:geb-spock:$gebVersion"
-		test "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
-		test "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
-		test "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
+		compile "org.codehaus.geb:geb-spock:$gebVersion"
+		compile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
+		compile "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
+		compile "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
 	}
 
 	plugins {
