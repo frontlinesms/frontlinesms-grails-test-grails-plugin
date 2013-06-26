@@ -6,4 +6,5 @@
 * move junit report style stuff to this plugin
 * move screenshot generation to this plugin
 * move spec generation scripts to this plugin
+* move injection of TODO method for specs into this plugin
 
