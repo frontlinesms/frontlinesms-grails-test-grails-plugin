@@ -1,3 +1,5 @@
+import groovy.sql.Sql
+
 eventDefaultStart = {
 	createUnitTest = { Map args = [:] ->
 		createSpec('unit', args)
@@ -55,6 +57,10 @@ eventTestStart = { testName ->
 			println "Events.eventTestStart(unit) :: ${('a' * 100).truncate(20)}"
 		}
 	}
+
+	if(currentTestPhase == 'integration') {
+		dropDataFromDb()
+	}
 }
 
 eventTestPhaseEnd = { phaseName ->
@@ -65,6 +71,52 @@ eventTestPhaseEnd = { phaseName ->
 			report.append '<img height="120" src="..' +
 			f.path.substring('target/test-reports'.size()) + '"/>\n'
 		}
+	}
+}
+
+String _databaseType
+def getDatabaseType() {
+	if(!_databaseType) {
+		def driverName = getDataSource().driverClassName
+		_databaseType = driverName.startsWith('com.mysql.')? 'mysql':
+				driverName.startsWith('org.h2.')? 'h2':
+				'unknown'
+	}
+	return _databaseType
+}
+
+def getSqlConnector() {
+	def dataSource = getDataSource()
+	Sql.newInstance(dataSource.url, dataSource.username, dataSource.password, dataSource.driverClassName)
+}
+
+def _dataSource
+def getDataSource() {
+	if(!_dataSource) {
+		String env = System.getProperty('grails.env')?: 'test'
+
+		URL url = new File("${basedir}/grails-app/conf/DataSource.groovy").toURL()
+		_dataSource = new ConfigSlurper(env).parse(url).dataSource
+	}
+	return _dataSource
+}
+
+def dropDataFromDb() {
+	if(databaseType == 'h2') {
+		def sql = getSqlConnector()
+		sql.execute "SET REFERENTIAL_INTEGRITY FALSE"
+		sql.eachRow("SHOW TABLES") { table -> sql.execute('DELETE FROM ' + table.TABLE_NAME) } 
+		sql.execute "SET REFERENTIAL_INTEGRITY TRUE"
+	} else if(databaseType == 'mysql') {
+		def sql = getSqlConnector()
+		sql.execute 'SET FOREIGN_KEY_CHECKS = 0'
+		sql.eachRow('SHOW TABLES') { table ->
+			def tableName = table[0]
+			sql.execute "DELETE FROM $tableName".toString()
+		}
+		sql.execute 'SET FOREIGN_KEY_CHECKS = 1'
+	} else {
+		throw new RuntimeException("Do not know how to drop data from database of type $databaseType")
 	}
 }
 

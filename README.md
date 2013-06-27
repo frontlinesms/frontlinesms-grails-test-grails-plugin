@@ -1,5 +1,9 @@
 # DONE
 
+## 0.5
+
+* move between-test database cleansing for integration tests to this plugin
+
 ## 0.4
 
 * move spec generation scripts to this plugin
@@ -23,5 +27,4 @@
 # TODO
 
 * Create common root GebSpec
-* move between-test database cleansing to this plugin
 
