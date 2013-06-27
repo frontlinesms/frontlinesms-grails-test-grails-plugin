@@ -24,7 +24,7 @@
 
 # IN PROGRESS
 
-# TODO
-
 * Create common root GebSpec
+
+# TODO
 
