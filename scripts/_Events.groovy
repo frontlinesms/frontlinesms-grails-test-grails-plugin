@@ -36,8 +36,8 @@ eventTestPhaseStart = { phaseName ->
 
 	//> Configure TODO methods on tests
 	def specMeta = Class.forName("spock.lang.Specification").metaClass.static
-	specMeta.getTODO = { throw new RuntimeException('TODO: Not yet implemented') }
-	specMeta.TODO = { throw new RuntimeException('TODO: Not yet implemented') }
+	specMeta.getTODO = { throw new RuntimeException('TODO: Not yet implemented.') }
+	specMeta.TODO = { throw new RuntimeException('TODO: Not yet implemented.') }
 	specMeta.TODO = { m -> throw new RuntimeException("TODO: $m") }
 }
 
