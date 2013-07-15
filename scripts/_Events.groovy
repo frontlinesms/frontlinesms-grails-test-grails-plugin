@@ -47,7 +47,7 @@ eventTestStart = { testName ->
 	if(currentTestPhase == 'unit') {
 		if(!metaClassModifiers) {
 			try {
-				metaClassModifiers = Class.forName('frontlinesms2.MetaClassModifiers')
+				metaClassModifiers = classLoader.loadClass('frontlinesms2.MetaClassModifiers')
 			} catch(ClassNotFoundException ex) { println 'Events.eventTestPhaseStart() :: frontlinesms2.MetaClassModifiers not found.  Ignoring.' }
 		}
 		if(metaClassModifiers) {
