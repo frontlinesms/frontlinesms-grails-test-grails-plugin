@@ -1,5 +1,9 @@
 # DONE
 
+## 0.6
+
+* Fixed MetaClassModifiers loading
+
 ## 0.5
 
 * move between-test database cleansing for integration tests to this plugin
