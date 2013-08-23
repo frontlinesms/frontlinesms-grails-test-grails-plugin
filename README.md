@@ -1,5 +1,9 @@
 # DONE
 
+## 0.8
+
+* Fixed integration test cleaning for H2 database
+
 ## 0.7
 
 * Fixed database cleaning between integration tests

@@ -56,7 +56,6 @@ eventTestStart = { testName ->
 	}
 
 	if(currentTestPhase == 'integration') {
-		grailsConsole.addStatus 'Cleaning database...'
 		try {
 			def dbUtils = classLoader.loadClass('frontlinesms.grails.test.DatabaseUtils')
 			dbUtils.basedir = basedir
@@ -65,7 +64,6 @@ eventTestStart = { testName ->
 			grailsConsole.error 'Fatal error when trying to clear database before integration tests.', ex
 			exit(51)
 		}
-		grailsConsole.updateStatus 'Database cleaned.'
 	}
 }
 
