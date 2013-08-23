@@ -1,5 +1,3 @@
-import groovy.sql.Sql
-
 eventDefaultStart = {
 	createUnitTest = { Map args = [:] ->
 		createSpec('unit', args)
@@ -48,18 +46,26 @@ eventTestStart = { testName ->
 		if(!metaClassModifiers) {
 			try {
 				metaClassModifiers = classLoader.loadClass('frontlinesms2.MetaClassModifiers')
-			} catch(ClassNotFoundException ex) { println 'Events.eventTestPhaseStart() :: frontlinesms2.MetaClassModifiers not found.  Ignoring.' }
+			} catch(ClassNotFoundException ex) {
+				grailsConsole.info 'Events.eventTestPhaseStart() :: frontlinesms2.MetaClassModifiers not found.  Ignoring.' }
+				metaClassModifiers = 'not-found'
 		}
-		if(metaClassModifiers) {
-			println 'Events.eventTestStart(unit) :: Adding standard FrontlineSMS metaclass modifications...'
+		if(metaClassModifiers instanceof Class) {
 			metaClassModifiers.addAll()
-			println 'Events.eventTestStart(unit) :: testing string truncate...'
-			println "Events.eventTestStart(unit) :: ${('a' * 100).truncate(20)}"
 		}
 	}
 
 	if(currentTestPhase == 'integration') {
-		dropDataFromDb()
+		grailsConsole.addStatus 'Cleaning database...'
+		try {
+			def dbUtils = classLoader.loadClass('frontlinesms.grails.test.DatabaseUtils')
+			dbUtils.basedir = basedir
+			dbUtils.dropDataFromDb()
+		} catch(Exception ex) {
+			grailsConsole.error 'Fatal error when trying to clear database before integration tests.', ex
+			exit(51)
+		}
+		grailsConsole.updateStatus 'Database cleaned.'
 	}
 }
 
@@ -71,52 +77,6 @@ eventTestPhaseEnd = { phaseName ->
 			report.append '<img height="120" src="..' +
 			f.path.substring('target/test-reports'.size()) + '"/>\n'
 		}
-	}
-}
-
-String _databaseType
-def getDatabaseType() {
-	if(!_databaseType) {
-		def driverName = getDataSource().driverClassName
-		_databaseType = driverName.startsWith('com.mysql.')? 'mysql':
-				driverName.startsWith('org.h2.')? 'h2':
-				'unknown'
-	}
-	return _databaseType
-}
-
-def getSqlConnector() {
-	def dataSource = getDataSource()
-	Sql.newInstance(dataSource.url, dataSource.username, dataSource.password, dataSource.driverClassName)
-}
-
-def _dataSource
-def getDataSource() {
-	if(!_dataSource) {
-		String env = System.getProperty('grails.env')?: 'test'
-
-		URL url = new File("${basedir}/grails-app/conf/DataSource.groovy").toURL()
-		_dataSource = new ConfigSlurper(env).parse(url).dataSource
-	}
-	return _dataSource
-}
-
-def dropDataFromDb() {
-	if(databaseType == 'h2') {
-		def sql = getSqlConnector()
-		sql.execute "SET REFERENTIAL_INTEGRITY FALSE"
-		sql.eachRow("SHOW TABLES") { table -> sql.execute('DELETE FROM ' + table.TABLE_NAME) } 
-		sql.execute "SET REFERENTIAL_INTEGRITY TRUE"
-	} else if(databaseType == 'mysql') {
-		def sql = getSqlConnector()
-		sql.execute 'SET FOREIGN_KEY_CHECKS = 0'
-		sql.eachRow('SHOW TABLES') { table ->
-			def tableName = table[0]
-			sql.execute "DELETE FROM $tableName".toString()
-		}
-		sql.execute 'SET FOREIGN_KEY_CHECKS = 1'
-	} else {
-		throw new RuntimeException("Do not know how to drop data from database of type $databaseType")
 	}
 }
 

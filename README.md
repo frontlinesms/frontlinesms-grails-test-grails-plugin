@@ -1,5 +1,9 @@
 # DONE
 
+## 0.7
+
+* Fixed database cleaning between integration tests
+
 ## 0.6
 
 * Fixed MetaClassModifiers loading
