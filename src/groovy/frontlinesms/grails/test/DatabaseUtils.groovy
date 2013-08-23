@@ -9,7 +9,6 @@ class DatabaseUtils {
 
 	static dropDataFromDb() {
 		if(databaseType == 'h2') {
-			System.exit(33)
 			def sql = getSqlConnector()
 			sql.execute "SET REFERENTIAL_INTEGRITY FALSE"
 			sql.eachRow("SHOW TABLES") { table -> sql.execute('DELETE FROM ' + table.TABLE_NAME) } 
