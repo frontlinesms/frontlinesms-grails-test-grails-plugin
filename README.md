@@ -1,5 +1,9 @@
 # DONE
 
+## 0.10
+
+* re-release of 0.9 with proper tagging
+
 ## 0.9
 
 * reverted changes to metaClassModifiers detection as new implementation was broken
