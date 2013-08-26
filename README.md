@@ -1,5 +1,9 @@
 # DONE
 
+## 0.9
+
+* reverted changes to metaClassModifiers detection as new implementation was broken
+
 ## 0.8
 
 * Fixed integration test cleaning for H2 database
