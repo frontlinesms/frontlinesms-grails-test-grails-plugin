@@ -1,5 +1,9 @@
 # DONE
 
+## 0.11
+
+* Removed annoying output from Events script when running unit tests
+
 ## 0.10
 
 * re-release of 0.9 with proper tagging

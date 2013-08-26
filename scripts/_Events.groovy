@@ -50,7 +50,6 @@ eventTestStart = { testName ->
 				grailsConsole.info 'Events.eventTestPhaseStart() :: frontlinesms2.MetaClassModifiers not found.  Ignoring.' }
 		}
 		if(metaClassModifiers) {
-			grailsConsole.addStatus "metaClassModifiers.class=${metaClassModifiers.getClass()}"
 			metaClassModifiers.addAll()
 		}
 	}
