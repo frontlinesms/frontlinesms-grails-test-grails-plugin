@@ -1,5 +1,14 @@
 # DONE
 
+## 0.13
+
+* Added EchoMessageSource, which allows tests to use i18n codes instead of relying on any particular language
+
+## 0.12
+
+* Updated Selenium dependency version
+* Added [Bails](https://github.com/frontlinesms/bails) to project
+
 ## 0.11
 
 * Removed annoying output from Events script when running unit tests
