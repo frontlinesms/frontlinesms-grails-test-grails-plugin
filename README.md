@@ -3,6 +3,7 @@
 ## 0.16
 
 * Added TODO methods to integration tests
+* Added public date formatting and parsing methods to the Echo message source
 
 ## 0.15
 
