@@ -10,6 +10,8 @@ class EchoMessageSource implements MessageSource {
 
 	String getMessage(String code, Object[] args, Locale locale) {
 		if(code == 'default.date.format') {
+			// This is the date format key used in grails by default.
+			// All dates should be formatted in a standard way in tests.
 			return 'yyyy-dd-MM_hh:mm'
 		} else if(args) {
 			return "${code}[${args.join(',')}]"
