@@ -4,7 +4,7 @@ import org.springframework.context.MessageSource
 import org.springframework.context.MessageSourceResolvable
 
 class EchoMessageSource implements MessageSource {
-	private static final String DATE_FORMAT = 'yyyy-dd-MM_hh:mm'
+	static final String DATE_FORMAT = 'yyyy-dd-MM_hh:mm'
 	private static final DATE_FORMAT_KEYS = ['date.format', 'default.date.format']
 
 	String getMessage(MessageSourceResolvable resolvable, Locale locale) {
