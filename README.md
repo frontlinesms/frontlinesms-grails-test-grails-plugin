@@ -1,5 +1,9 @@
 # DONE
 
+## 0.15
+
+* Updated date formatting to handle `date.format` key as well as `default.date.format` as required by g:formatDate tag.
+
 ## 0.14
 
 * Added default date formatting to EchoMessageSource
