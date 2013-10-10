@@ -12,6 +12,10 @@ class EchoMessageSource implements MessageSource {
 		getMessage(resolvable.codes[0], resolvable.arguments)
 	}
 
+	String getMessage(String code, Object[] args) {
+		getMessage(code, args, null)
+	}
+
 	String getMessage(String code, Object[] args, Locale locale) {
 		if(code in DATE_FORMAT_KEYS) {
 			// This is the date format key used in grails by default.
