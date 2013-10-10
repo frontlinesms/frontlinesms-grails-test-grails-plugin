@@ -1,5 +1,6 @@
 package frontlinesms.grails.test
 
+import java.text.SimpleDateFormat
 import org.springframework.context.MessageSource
 import org.springframework.context.MessageSourceResolvable
 
@@ -25,6 +26,14 @@ class EchoMessageSource implements MessageSource {
 
 	String 	getMessage(String code, Object[] args, String defaultMessage, Locale locale) {
 		getMessage(code, args, locale)
+	}
+
+	static String formatDate(Date d) {
+		new SimpleDateFormat(DATE_FORMAT).format(d)
+	}
+
+	static Date parseDate(String dateString) {
+		new SimpleDateFormat(DATE_FORMAT).parse(dateString)
 	}
 }
 
