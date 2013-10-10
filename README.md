@@ -1,5 +1,9 @@
 # DONE
 
+## 0.14
+
+* Added default date formatting to EchoMessageSource
+
 ## 0.13
 
 * Added EchoMessageSource, which allows tests to use i18n codes instead of relying on any particular language
