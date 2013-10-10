@@ -9,9 +9,9 @@ class EchoMessageSource implements MessageSource {
 	}
 
 	String getMessage(String code, Object[] args, Locale locale) {
-		if(code == 'default.date.format')
-			return 'dd MMMM, yyyy hh:mm'
-		if(args) {
+		if(code == 'default.date.format') {
+			return 'yyyy-dd-MM_hh:mm'
+		} else if(args) {
 			return "${code}[${args.join(',')}]"
 		} else {
 			return code
