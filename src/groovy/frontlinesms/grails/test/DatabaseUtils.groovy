@@ -8,6 +8,9 @@ class DatabaseUtils {
 	private static _dataSource
 
 	static dropDataFromDb() {
+		if(noDataSourceConfigured()) {
+			return
+		}
 		if(databaseType == 'h2') {
 			def sql = getSqlConnector()
 			sql.execute "SET REFERENTIAL_INTEGRITY FALSE"
@@ -51,6 +54,10 @@ class DatabaseUtils {
 			_dataSource = new ConfigSlurper(env).parse(url).dataSource
 		}
 		return _dataSource
+	}
+
+	private static boolean noDataSourceConfigured() {
+		return !new File("${basedir}/grails-app/conf/DataSource.groovy").exists()
 	}
 }
 

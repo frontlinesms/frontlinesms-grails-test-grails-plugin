@@ -35,10 +35,14 @@ eventTestPhaseStart = { phaseName ->
 	}
 
 	//> Configure TODO methods on tests
-	def specMeta = Class.forName("spock.lang.Specification").metaClass.static
-	specMeta.getTODO = { throw new RuntimeException('TODO: Not yet implemented.') }
-	specMeta.TODO = { throw new RuntimeException('TODO: Not yet implemented.') }
-	specMeta.TODO = { m -> throw new RuntimeException("TODO: $m") }
+	def todoMixin = { className ->
+		def meta = Class.forName(className).metaClass.static
+		meta.getTODO = { throw new RuntimeException('TODO: Not yet implemented.') }
+		meta.TODO = { throw new RuntimeException('TODO: Not yet implemented.') }
+		meta.TODO = { m -> throw new RuntimeException("TODO: $m") }
+	}
+	todoMixin('spock.lang.Specification')
+	todoMixin('grails.plugin.spock.IntegrationSpec')
 }
 
 eventTestStart = { testName ->

@@ -1,5 +1,9 @@
 # DONE
 
+## 0.16
+
+* Added TODO methods to integration tests
+
 ## 0.15
 
 * Updated date formatting to handle `date.format` key as well as `default.date.format` as required by g:formatDate tag.
