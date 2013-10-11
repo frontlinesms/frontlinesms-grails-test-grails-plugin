@@ -12,6 +12,8 @@ class EchoMessageSource implements MessageSource {
 		getMessage(resolvable.codes[0], resolvable.arguments)
 	}
 
+	// somehow grails manages to call this method from <g:message error='...'>,
+	// even though the method does not exist on the MessageSource interface.
 	String getMessage(String code, Object[] args) {
 		getMessage(code, args, null)
 	}
