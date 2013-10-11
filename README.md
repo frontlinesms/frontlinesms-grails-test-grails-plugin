@@ -1,13 +1,10 @@
 # DONE
 
-## 0.17
-
-* Added new EchoMessageSource.getMessage() implementation to work around grails requirement for `<g:message error="...">`
-
 ## 0.16
 
 * Added TODO methods to integration tests
 * Added public date formatting and parsing methods to the Echo message source
+* Added new EchoMessageSource.getMessage() implementation to work around grails requirement for `<g:message error="...">`
 
 ## 0.15
 
