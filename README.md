@@ -1,5 +1,9 @@
 # DONE
 
+## 0.17
+
+* Added new EchoMessageSource.getMessage() implementation to work around grails requirement for `<g:message error="...">`
+
 ## 0.16
 
 * Added TODO methods to integration tests
