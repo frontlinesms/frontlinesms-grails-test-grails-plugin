@@ -5,7 +5,7 @@ grails.project.dependency.resolution = {
 	def gebVersion = '0.7.2'
 	def spockVersion = '0.6'
 	def groovyVersion = '1.8'
-	def seleniumVersion = '2.35.0'
+	def seleniumVersion = '2.37.0'
 
 	inherits 'global'
 	log 'warn'
@@ -24,6 +24,7 @@ grails.project.dependency.resolution = {
 		compile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
 		compile "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
 		compile "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
+		test 'org.apache.httpcomponents:httpclient:4.3.1' // Required for selenium 2.37.0 due to https://code.google.com/p/selenium/issues/detail?id=6432
 	}
 
 	plugins {
