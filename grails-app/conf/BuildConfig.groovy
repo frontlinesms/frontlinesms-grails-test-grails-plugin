@@ -44,7 +44,7 @@ grails.project.dependency.resolution = {
 		compile ":code-coverage:1.2.6"
 		compile ':codenarc:0.18.1'
 
-		build ':bails:0.3.2'
+		build ':bails:0.6'
 	}
 }
 
