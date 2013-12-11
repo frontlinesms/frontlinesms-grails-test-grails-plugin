@@ -16,7 +16,7 @@ class FrontlinesmsGrailsTestGrailsPlugin {
 		if(!application.config['frontlinesms.test.i18n.echo.disable'] && (
 				application.config['frontlinesms.test.i18n.echo.force'] ||
 				Environment.current == Environment.TEST ||
-				(Environment.current == Environment.CUSTOM && Environment.current.contains('test')))) {
+				(Environment.current == Environment.CUSTOM && Environment.current.name.contains('test')))) {
 			messageSource(EchoMessageSource)
 		}
 	}
