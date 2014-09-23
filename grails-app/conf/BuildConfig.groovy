@@ -34,7 +34,9 @@ grails.project.dependency.resolution = {
 		}
 		compile ":tomcat:7.0.42"
 
-		compile ':build-test-data:2.0.5'
+		compile ':build-test-data:2.2.1', {
+			export = false
+		}
 		compile ":spock:$spockVersion", {
 			exclude 'spock-grails-support'
 		}
