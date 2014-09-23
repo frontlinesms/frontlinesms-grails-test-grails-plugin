@@ -32,7 +32,7 @@ grails.project.dependency.resolution = {
 				':rest-client-builder:1.0.3', {
 			export = false
 		}
-		compile ":tomcat:$grailsVersion"
+		compile ":tomcat:7.0.42"
 
 		compile ':build-test-data:2.0.5'
 		compile ":spock:$spockVersion", {
