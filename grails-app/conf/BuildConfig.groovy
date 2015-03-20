@@ -2,7 +2,7 @@ grails.project.work.dir = 'target'
 grails.project.target.level = 1.6
 
 grails.project.dependency.resolution = {
-	def gebVersion = '0.9.3'
+	def gebVersion = '0.10.0'
 	def spockVersion = '0.7'
 	def groovyVersion = '2.0'
 	def seleniumVersion = '2.43.1'
@@ -20,7 +20,6 @@ grails.project.dependency.resolution = {
 
 	dependencies {
 		compile "org.gebish:geb-spock:$gebVersion"
-		compile "org.spockframework:spock-grails-support:$spockVersion-groovy-$groovyVersion"
 		compile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
 		compile "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
 		compile "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
@@ -36,9 +35,6 @@ grails.project.dependency.resolution = {
 
 		compile ':build-test-data:2.2.1', {
 			export = false
-		}
-		compile ":spock:$spockVersion", {
-			exclude 'spock-grails-support'
 		}
 		compile ":geb:$gebVersion"
 		compile ':remote-control:1.5'

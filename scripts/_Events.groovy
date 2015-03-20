@@ -42,7 +42,7 @@ eventTestPhaseStart = { phaseName ->
 		meta.TODO = { m -> throw new RuntimeException("TODO: $m") }
 	}
 	todoMixin('spock.lang.Specification')
-	todoMixin('grails.plugin.spock.IntegrationSpec')
+	todoMixin('grails.test.spock.IntegrationSpec')
 }
 
 eventTestStart = { testName ->

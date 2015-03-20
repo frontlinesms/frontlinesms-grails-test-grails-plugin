@@ -2,7 +2,7 @@ import frontlinesms.grails.test.EchoMessageSource
 import grails.util.Environment
 
 class FrontlinesmsGrailsTestGrailsPlugin {
-	def version = '0.20-SNAPSHOT'
+	def version = '0.21-SNAPSHOT'
 	def grailsVersion = '2.0 > *'
 	def title = 'Frontlinesms Test Plugin'
 	def author = 'Alex Anderson'
