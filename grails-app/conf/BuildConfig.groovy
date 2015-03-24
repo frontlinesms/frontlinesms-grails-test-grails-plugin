@@ -1,25 +1,33 @@
 grails.project.work.dir = 'target'
 grails.project.target.level = 1.6
-
+grails.project.dependency.resolver = "maven" // or ivy
 grails.project.dependency.resolution = {
 	def gebVersion = '0.10.0'
-	def spockVersion = '0.7'
-	def groovyVersion = '2.0'
 	def seleniumVersion = '2.43.1'
 
 	inherits 'global'
 	log 'warn'
+
+        def SP = { key, _default='' -> [System.properties[key], System.env[key.toUpperCase().replace('.', '_')], _default].find { it != null } }
+
 
 	repositories {
 		grailsHome()
 		mavenLocal()
 		grailsCentral()
 		mavenCentral()
-		mavenRepo 'http://dev.frontlinesms.com/m2repo/'
+		mavenRepo('http://dev.frontlinesms.com/m2repo/') {
+                        authentication(
+                                username: SP('FRONTLINESMS_MAVEN_USERNAME'),
+                                password: SP('FRONTLINESMS_MAVEN_PASSWORD_HTTP')
+                        )
+                }
+                mavenRepo "http://repo.grails.org/grails/core"
 	}
 
 	dependencies {
 		compile "org.gebish:geb-spock:$gebVersion"
+                compile "org.gebish:geb-junit4:$gebVersion"
 		compile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
 		compile "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
 		compile "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
@@ -37,6 +45,7 @@ grails.project.dependency.resolution = {
 			export = false
 		}
 		compile ":geb:$gebVersion"
+
 		compile ':remote-control:1.5'
 
 		compile ":code-coverage:1.2.6"
