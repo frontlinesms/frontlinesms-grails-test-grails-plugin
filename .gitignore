@@ -15,7 +15,8 @@ target/
 .project
 
 *.log
-
+.idea/
+*.iml
 # Not sure what this is for - not useful but keeps regenerating
 web-app/
 
