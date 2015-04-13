@@ -3,7 +3,7 @@ grails.project.target.level = 1.6
 grails.project.dependency.resolver = "maven" // or ivy
 grails.project.dependency.resolution = {
 	def gebVersion = '0.10.0'
-	def seleniumVersion = '2.43.1'
+	def seleniumVersion = '2.45.0'
 
 	inherits 'global'
 	log 'warn'
@@ -23,6 +23,7 @@ grails.project.dependency.resolution = {
                         )
                 }
                 mavenRepo "http://repo.grails.org/grails/core"
+		mavenRepo "http://dl.bintray.com/alkemist/maven/"
 	}
 
 	dependencies {

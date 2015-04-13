@@ -58,7 +58,7 @@ eventTestStart = { testName ->
 		}
 	}
 
-	if(currentTestPhase == 'integration') {
+	if(currentTestPhase == 'integration' || currentTestPhase == "functional") {
 		try {
 			def dbUtils = classLoader.loadClass('frontlinesms.grails.test.DatabaseUtils')
 			dbUtils.basedir = basedir
