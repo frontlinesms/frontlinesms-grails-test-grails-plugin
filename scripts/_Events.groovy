@@ -57,17 +57,6 @@ eventTestStart = { testName ->
 			metaClassModifiers.addAll()
 		}
 	}
-
-	if(currentTestPhase == 'integration' || currentTestPhase == "functional") {
-		try {
-			def dbUtils = classLoader.loadClass('frontlinesms.grails.test.DatabaseUtils')
-			dbUtils.basedir = basedir
-			dbUtils.dropDataFromDb()
-		} catch(Exception ex) {
-			grailsConsole.error 'Fatal error when trying to clear database before integration tests.', ex
-			exit(51)
-		}
-	}
 }
 
 eventTestPhaseEnd = { phaseName ->
