@@ -1,8 +1,8 @@
 grails.project.work.dir = 'target'
 grails.project.target.level = 1.7
-
+grails.project.dependency.resolver = "maven" // or ivy
 grails.project.dependency.resolution = {
-	def gebVersion = '0.7.2'
+	def gebVersion = '0.10.0'
 	def spockVersion = '0.6'
 	def groovyVersion = '1.8'
 	def seleniumVersion = '2.45.0'
@@ -10,17 +10,27 @@ grails.project.dependency.resolution = {
 	inherits 'global'
 	log 'warn'
 
+        def SP = { key, _default='' -> [System.properties[key], System.env[key.toUpperCase().replace('.', '_')], _default].find { it != null } }
+
+
 	repositories {
 		grailsHome()
 		mavenLocal()
 		grailsCentral()
 		mavenCentral()
-		mavenRepo 'http://dev.frontlinesms.com/m2repo/'
+		mavenRepo('http://dev.frontlinesms.com/m2repo/') {
+                        authentication(
+                                username: SP('FRONTLINESMS_MAVEN_USERNAME'),
+                                password: SP('FRONTLINESMS_MAVEN_PASSWORD_HTTP')
+                        )
+                }
+                mavenRepo "http://repo.grails.org/grails/core"
+		mavenRepo "http://dl.bintray.com/alkemist/maven/"
 	}
 
 	dependencies {
-		compile "org.codehaus.geb:geb-spock:$gebVersion"
-		compile "org.spockframework:spock-grails-support:$spockVersion-groovy-$groovyVersion"
+		compile "org.gebish:geb-spock:$gebVersion"
+                compile "org.gebish:geb-junit4:$gebVersion"
 		compile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
 		compile "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
 		compile "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
@@ -28,18 +38,15 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
-		build ':release:2.2.1',
-				':rest-client-builder:1.0.3', {
+		build ':release:3.1.0'
+		compile ":tomcat:7.0.42"
+
+		compile ':build-test-data:2.2.1', {
 			export = false
 		}
-		compile ":tomcat:$grailsVersion"
-
-		compile ':build-test-data:2.0.5'
-		compile ":spock:$spockVersion", {
-			exclude 'spock-grails-support'
-		}
 		compile ":geb:$gebVersion"
-		compile ':remote-control:1.4'
+
+		compile ':remote-control:2.0'
 
 		compile ":code-coverage:1.2.6"
 		compile ':codenarc:0.18.1'

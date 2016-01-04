@@ -42,7 +42,7 @@ eventTestPhaseStart = { phaseName ->
 		meta.TODO = { m -> throw new RuntimeException("TODO: $m") }
 	}
 	todoMixin('spock.lang.Specification')
-	todoMixin('grails.plugin.spock.IntegrationSpec')
+	todoMixin('grails.test.spock.IntegrationSpec')
 }
 
 eventTestStart = { testName ->
@@ -55,17 +55,6 @@ eventTestStart = { testName ->
 		}
 		if(metaClassModifiers) {
 			metaClassModifiers.addAll()
-		}
-	}
-
-	if(currentTestPhase == 'integration') {
-		try {
-			def dbUtils = classLoader.loadClass('frontlinesms.grails.test.DatabaseUtils')
-			dbUtils.basedir = basedir
-			dbUtils.dropDataFromDb()
-		} catch(Exception ex) {
-			grailsConsole.error 'Fatal error when trying to clear database before integration tests.', ex
-			exit(51)
 		}
 	}
 }
