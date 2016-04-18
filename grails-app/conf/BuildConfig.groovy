@@ -5,7 +5,7 @@ grails.project.dependency.resolution = {
 	def gebVersion = '0.10.0'
 	def spockVersion = '0.6'
 	def groovyVersion = '1.8'
-	def seleniumVersion = '2.48.2'
+	def seleniumVersion = '2.53.0'
 
 	inherits 'global'
 	log 'warn'
