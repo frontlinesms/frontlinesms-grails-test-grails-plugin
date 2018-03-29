@@ -33,6 +33,7 @@ grails.project.dependency.resolution = {
                 compile "org.gebish:geb-junit4:$gebVersion"
 		compile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
 		compile "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
+		compile "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
 		compile "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
 		test 'org.apache.httpcomponents:httpclient:4.3.1' // Required for selenium 2.37.0 due to https://code.google.com/p/selenium/issues/detail?id=6432
 	}
